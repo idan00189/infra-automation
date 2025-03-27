@@ -41,7 +41,7 @@ def load_existing_instances():
     return []
 
 def save_configurations(machine_objects):
-    # Convert each Machine object to a dict using model_dump()
+    # Convert each Machine object to a dict using model_dump() (or dict() if using Pydantic v1)
     new_instances = [machine.model_dump() for machine in machine_objects]
     all_instances = load_existing_instances() + new_instances
     # Ensure the configs directory exists
@@ -67,10 +67,10 @@ def main():
 
     save_configurations(machine_objects)
 
+    # For each machine, log creation and run the Bash script individually
     for machine in machine_objects:
         machine.log_creation(logger)
-
-    run_setup_script()
+        run_setup_script()  # Run the service installation script for each machine
 
     logger.info("Provisioning session completed.")
 
