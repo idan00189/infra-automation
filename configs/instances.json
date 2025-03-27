@@ -3,19 +3,6 @@
         "name": "idan",
         "os": "linux",
         "cpu": "2vcpu",
-        "ram": "4gb",
-        "idan": 3
-    },
-    {
-        "name": "idan",
-        "os": "windows",
-        "cpu": "2vcpu",
-        "ram": "8gb"
-    },
-    {
-        "name": "idan",
-        "os": "linux",
-        "cpu": "2vcpu",
-        "ram": "999gb"
+        "ram": "4gb"
     }
 ]
