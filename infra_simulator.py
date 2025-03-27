@@ -15,7 +15,7 @@ def get_user_input():
         if name.lower() == 'done':
             break
         
-        os_input = input("Enter OS (Ubuntu/CentOS): ").strip()
+        os_input = input("Enter OS (linux/windows): ").strip()
         cpu = input("Enter CPU (e.g., 2vCPU): ").strip()
         ram = input("Enter RAM (e.g., 4GB): ").strip()
         

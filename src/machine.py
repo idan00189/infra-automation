@@ -9,8 +9,8 @@ class Machine(BaseModel):
     @field_validator("os")
     @classmethod
     def validate_os(cls, value):
-        if value not in ["Ubuntu", "CentOS"]:
-            raise ValueError("OS must be either 'Ubuntu' or 'CentOS'")
+        if value not in ["linux", "windows"]:
+            raise ValueError("OS must be either 'linux' or 'windows'")
         return value
 
     @field_validator("cpu")
