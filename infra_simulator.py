@@ -72,7 +72,7 @@ def main():
         machine.log_creation(logger)
         run_setup_script()  # Run the service installation script for each machine
 
-    logger.info("Provisioning session completed.")
+    logger.info("Provisioning session completed.\n\n\n")
 
 if __name__ == "__main__":
     main()

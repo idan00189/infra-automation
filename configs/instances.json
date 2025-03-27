@@ -1,26 +1,62 @@
 [
     {
-        "name": "idan1",
+        "name": "idan3",
         "os": "linux",
         "cpu": "2vcpu",
         "ram": "4gb"
     },
     {
-        "name": "idan2",
-        "os": "windows",
+        "name": "idan4",
+        "os": "linux",
         "cpu": "4vcpu",
-        "ram": "16gb"
+        "ram": "8gb"
     },
     {
-        "name": "idan3",
+        "name": "idan",
         "os": "linux",
-        "cpu": "32vcpu",
-        "ram": "128gb"
+        "cpu": "2vcpu",
+        "ram": "4gb"
+    },
+    {
+        "name": "idan5",
+        "os": "linux",
+        "cpu": "2vcpu",
+        "ram": "4gb"
+    },
+    {
+        "name": "idan",
+        "os": "linux",
+        "cpu": "2vcpu",
+        "ram": "4gb"
     },
     {
         "name": "idan4",
         "os": "linux",
         "cpu": "2vcpu",
+        "ram": "5gb"
+    },
+    {
+        "name": "idan3",
+        "os": "linux",
+        "cpu": "2vcpu",
         "ram": "4gb"
+    },
+    {
+        "name": "idan",
+        "os": "linux",
+        "cpu": "2vcpu",
+        "ram": "3gb"
+    },
+    {
+        "name": "idan3",
+        "os": "windows",
+        "cpu": "5vcpu",
+        "ram": "8gb"
+    },
+    {
+        "name": "idan9",
+        "os": "windows",
+        "cpu": "2vcpu",
+        "ram": "5gb"
     }
 ]
