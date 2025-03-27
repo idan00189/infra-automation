@@ -1,9 +1,10 @@
 #!/bin/bash
 # scripts/setup_nginx.sh
 
-LOG_FILE="logs/provisioning.log"
+LOG_DIR="logs"
+LOG_FILE="$LOG_DIR/provisioning.log"
 
-# Create log directory if it doesn't exist
+# Create the logs directory if it doesn't exist
 mkdir -p "$LOG_DIR"
 
 echo "Starting Nginx installation..." | tee -a "$LOG_FILE"
@@ -13,8 +14,7 @@ if command -v nginx > /dev/null 2>&1; then
 else
     echo "Installing Nginx..." | tee -a "$LOG_FILE"
     sleep 2
-    # Uncomment the following line for an actual installation:
-    # sudo apt-get update && sudo apt-get install -y nginx
+    # Simulate installation
     echo "Nginx installation simulated successfully." | tee -a "$LOG_FILE"
 fi
 

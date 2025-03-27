@@ -1,15 +1,15 @@
 [
     {
         "name": "idan",
-        "os": "Ubuntu",
-        "cpu": "2vCPU",
-        "ram": "4GB"
+        "os": "linux",
+        "cpu": "4vcpu",
+        "ram": "8gb"
     },
     {
-        "name": "idan2",
-        "os": "Ubuntu",
-        "cpu": "2vCPU",
-        "ram": "4GB"
+        "name": "idan3",
+        "os": "windows",
+        "cpu": "16vcpu",
+        "ram": "32gb"
     },
     {
         "name": "idan4",
@@ -18,21 +18,21 @@
         "ram": "4gb"
     },
     {
-        "name": "idan5",
-        "os": "windows",
-        "cpu": "16vcpu",
-        "ram": "8gb"
-    },
-    {
-        "name": "idan6",
+        "name": "idan",
         "os": "linux",
         "cpu": "2vcpu",
         "ram": "4gb"
     },
     {
-        "name": "idan7",
-        "os": "windows",
-        "cpu": "8vcpu",
-        "ram": "16gb"
+        "name": "idan2",
+        "os": "linux",
+        "cpu": "2vcpu",
+        "ram": "4gb"
+    },
+    {
+        "name": "idan",
+        "os": "linux",
+        "cpu": "2vcpu",
+        "ram": "4gb"
     }
 ]
