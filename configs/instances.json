@@ -1,0 +1,32 @@
+[
+    {
+        "name": "idan1",
+        "os": "Ubuntu",
+        "cpu": "2vCPU",
+        "ram": "4GB"
+    },
+    {
+        "name": "idan2",
+        "os": "CentOS",
+        "cpu": "4vCPU",
+        "ram": "16GB"
+    },
+    {
+        "name": "idan3",
+        "os": "Ubuntu",
+        "cpu": "2vCPU",
+        "ram": "33GB"
+    },
+    {
+        "name": "idan4",
+        "os": "Ubuntu",
+        "cpu": "2vCPU",
+        "ram": "2gb"
+    },
+    {
+        "name": "idan1",
+        "os": "Ubuntu",
+        "cpu": "2vCPU",
+        "ram": "4GB"
+    }
+]

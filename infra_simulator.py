@@ -1,90 +1,77 @@
-# infra_simulator.py
-
 import json
 import subprocess
 import os
-from src.machine import Machine
 from src.logger import logger
+from src.machine import Machine
 
-# Ensure necessary directories exist
-os.makedirs("configs", exist_ok=True)
-
-def validate_instance_input(instance):
-    """Basic validation for machine input."""
-    valid_os = ["Ubuntu", "CentOS"]
-    if instance["os"] not in valid_os:
-        logger.error(f"Invalid OS for machine '{instance['name']}': {instance['os']}")
-        return False
-
-    if not instance["cpu"].lower().endswith("vcpu"):
-        logger.error(f"Invalid CPU format for machine '{instance['name']}': {instance['cpu']}")
-        return False
-
-    if not instance["ram"].lower().endswith("gb"):
-        logger.error(f"Invalid RAM format for machine '{instance['name']}': {instance['ram']}")
-        return False
-
-    return True
+CONFIG_FILE = "configs/instances.json"
 
 def get_user_input():
-    """Collects user input for machine provisioning."""
     machines = []
+    print("🛠️  Enter machine details (type 'done' to finish)...")
+    
     while True:
-        name = input("Enter machine name (or 'done' to finish): ")
+        name = input("Enter machine name (or 'done' to finish): ").strip()
         if name.lower() == 'done':
             break
-        os_input = input("Enter OS (Ubuntu/CentOS): ")
-        cpu = input("Enter CPU (e.g., 2vCPU): ")
-        ram = input("Enter RAM (e.g., 4GB): ")
-
-        instance_data = {"name": name, "os": os_input, "cpu": cpu, "ram": ram}
-
-        if not validate_instance_input(instance_data):
-            print("Invalid input. Please try again.")
+        
+        os_input = input("Enter OS (Ubuntu/CentOS): ").strip()
+        cpu = input("Enter CPU (e.g., 2vCPU): ").strip()
+        ram = input("Enter RAM (e.g., 4GB): ").strip()
+        
+        try:
+            # Create a Machine instance using Pydantic validation
+            machine = Machine(name=name, os=os_input, cpu=cpu, ram=ram)
+            machines.append(machine)
+            print(f"✅ Machine '{name}' added.\n")
+        except Exception as e:
+            print(f"[ERROR] {e}\n")
+            # If validation fails, skip this entry and re-prompt
             continue
 
-        machines.append(instance_data)
     return machines
 
-def save_configurations(instances):
-    """Save the machine instances to a JSON configuration file."""
-    config_file = "configs/instances.json"
-    with open(config_file, "w") as f:
-        json.dump(instances, f, indent=4)
-    logger.info(f"Saved configurations to {config_file}")
+def load_existing_instances():
+    if os.path.exists(CONFIG_FILE):
+        with open(CONFIG_FILE, "r") as f:
+            try:
+                return json.load(f)
+            except json.JSONDecodeError:
+                logger.warning("Invalid JSON detected in config file. Starting fresh.")
+                return []
+    return []
+
+def save_configurations(machine_objects):
+    # Convert each Machine object to a dict using model_dump() (or dict() if using Pydantic v1)
+    new_instances = [machine.model_dump() for machine in machine_objects]
+    all_instances = load_existing_instances() + new_instances
+    with open(CONFIG_FILE, "w") as f:
+        json.dump(all_instances, f, indent=4)
+    logger.info(f"Saved {len(new_instances)} new machine(s) to {CONFIG_FILE}")
 
 def run_setup_script():
-    """Runs the Bash script to simulate service installation."""
     try:
-        # Ensure the scripts directory is correctly referenced
         subprocess.run(["bash", "scripts/setup_nginx.sh"], check=True)
         logger.info("Nginx installation simulated successfully.")
     except subprocess.CalledProcessError as e:
-        logger.error(f"Failed to install Nginx: {e}")
+        logger.error(f"Failed to run Bash script: {e}")
 
 def main():
-    logger.info("Provisioning started.")
-
-    # Get user inputs and validate
-    instances = get_user_input()
-    if not instances:
-        logger.info("No machines defined. Exiting.")
+    logger.info("Provisioning session started.")
+    
+    machine_objects = get_user_input()
+    if not machine_objects:
+        logger.info("No machines provided. Exiting.")
         return
 
-    # Save configurations to JSON
-    save_configurations(instances)
+    save_configurations(machine_objects)
 
-    # Create Machine objects and log each creation
-    machine_objects = []
-    for instance in instances:
-        machine = Machine(instance["name"], instance["os"], instance["cpu"], instance["ram"])
+    for machine in machine_objects:
         machine.log_creation(logger)
-        machine_objects.append(machine)
 
-    # Simulate service installation via Bash script
     run_setup_script()
 
-    logger.info("Provisioning completed.")
+    logger.info("Provisioning session completed.")
 
 if __name__ == "__main__":
     main()
