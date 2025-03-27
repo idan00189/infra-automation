@@ -46,5 +46,23 @@
         "os": "Ubuntu",
         "cpu": "2vCPU",
         "ram": "4GB"
+    },
+    {
+        "name": "idan",
+        "os": "Ubuntu",
+        "cpu": "2vCPU",
+        "ram": "4GB"
+    },
+    {
+        "name": "idan",
+        "os": "Ubuntu",
+        "cpu": "2vCPU",
+        "ram": "4GB"
+    },
+    {
+        "name": "idan",
+        "os": "Ubuntu",
+        "cpu": "2vCPU",
+        "ram": "4GB"
     }
 ]
