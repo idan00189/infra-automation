@@ -2,7 +2,7 @@ import json
 import subprocess
 import os
 from src.logger import logger
-from src.machine import Machine
+from src.machine import Machine  # Machine class includes Pydantic validation
 
 CONFIG_FILE = "configs/instances.json"
 
@@ -26,7 +26,6 @@ def get_user_input():
             print(f"✅ Machine '{name}' added.\n")
         except Exception as e:
             print(f"[ERROR] {e}\n")
-            # If validation fails, skip this entry and re-prompt
             continue
 
     return machines
@@ -42,9 +41,11 @@ def load_existing_instances():
     return []
 
 def save_configurations(machine_objects):
-    # Convert each Machine object to a dict using model_dump() (or dict() if using Pydantic v1)
+    # Convert each Machine object to a dict using model_dump()
     new_instances = [machine.model_dump() for machine in machine_objects]
     all_instances = load_existing_instances() + new_instances
+    # Ensure the configs directory exists
+    os.makedirs("configs", exist_ok=True)
     with open(CONFIG_FILE, "w") as f:
         json.dump(all_instances, f, indent=4)
     logger.info(f"Saved {len(new_instances)} new machine(s) to {CONFIG_FILE}")
