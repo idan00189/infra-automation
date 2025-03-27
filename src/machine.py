@@ -1,20 +1,20 @@
-# src/schemas.py
+from pydantic import BaseModel, field_validator
 
-from pydantic import BaseModel, validator
-
-class MachineModel(BaseModel):
+class Machine(BaseModel):
     name: str
     os: str
     cpu: str
     ram: str
 
-    @validator("os")
+    @field_validator("os")
+    @classmethod
     def validate_os(cls, value):
         if value not in ["Ubuntu", "CentOS"]:
             raise ValueError("OS must be either 'Ubuntu' or 'CentOS'")
         return value
 
-    @validator("cpu")
+    @field_validator("cpu")
+    @classmethod
     def validate_cpu(cls, value):
         if not value.lower().endswith("vcpu"):
             raise ValueError("CPU must end with 'vCPU' (e.g., 2vCPU)")
@@ -26,7 +26,8 @@ class MachineModel(BaseModel):
             raise ValueError("CPU must be a positive number ending with 'vCPU'")
         return value
 
-    @validator("ram")
+    @field_validator("ram")
+    @classmethod
     def validate_ram(cls, value):
         if not value.lower().endswith("gb"):
             raise ValueError("RAM must end with 'GB' (e.g., 4GB)")
@@ -37,3 +38,11 @@ class MachineModel(BaseModel):
         except Exception:
             raise ValueError("RAM must be a positive number ending with 'GB'")
         return value
+
+    def log_creation(self, logger):
+        message = (
+            f"Provisioning machine: {self.name} (OS: {self.os}, "
+            f"CPU: {self.cpu}, RAM: {self.ram})"
+        )
+        logger.info(message)
+        print(message)
