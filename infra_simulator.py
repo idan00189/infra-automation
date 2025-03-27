@@ -25,6 +25,8 @@ def get_user_input():
             machines.append(machine)
             print(f"✅ Machine '{name}' added.\n")
         except Exception as e:
+            error_msg = f"Failed to create machine '{name}': {str(e)}"
+            logger.error(error_msg)
             print(f"[ERROR] {e}\n")
             continue
 
@@ -62,7 +64,7 @@ def main():
     
     machine_objects = get_user_input()
     if not machine_objects:
-        logger.info("No machines provided. Exiting.")
+        logger.info("No machines provided. Exiting.\n\n\n")
         return
 
     save_configurations(machine_objects)
