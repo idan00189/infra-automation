@@ -92,18 +92,7 @@ Built with:
 - **Pydantic**: For rock-solid data validation
 - **Standard Library**: json, subprocess, logging, os
 
-## 🤝 Want to Contribute?
 
-Feel free to:
-- Open issues for bugs or suggestions
-- Submit PRs for improvements
-- Fork and adapt for your own use
-
-## 📫 Get in Touch
-
-- GitHub: [Your GitHub Profile]
-- LinkedIn: [Your LinkedIn]
-- Email: [Your Email]
 
 ---
 
