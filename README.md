@@ -108,7 +108,7 @@ Feel free to:
 ---
 
 <p align="center">
-  Built with 💻 by [Your Name] - A passionate infrastructure enthusiast
+  Built with 💻 by Idan Cohen - A passionate infrastructure enthusiast
 </p>
 
 ## Configuration Format
