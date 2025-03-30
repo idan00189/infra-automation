@@ -7,14 +7,12 @@ class Machine(BaseModel):
     ram: str
 
     @field_validator("os")
-    @classmethod
     def validate_os(cls, value):
         if value not in ["linux", "windows"]:
             raise ValueError("OS must be either 'linux' or 'windows'")
         return value
 
     @field_validator("cpu")
-    @classmethod
     def validate_cpu(cls, value):
         if not value.lower().endswith("vcpu"):
             raise ValueError("CPU must end with 'vCPU' (e.g., 2vCPU)")
@@ -27,7 +25,6 @@ class Machine(BaseModel):
         return value
 
     @field_validator("ram")
-    @classmethod
     def validate_ram(cls, value):
         if not value.lower().endswith("gb"):
             raise ValueError("RAM must end with 'GB' (e.g., 4GB)")

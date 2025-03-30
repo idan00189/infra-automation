@@ -4,5 +4,23 @@
         "os": "linux",
         "cpu": "2vcpu",
         "ram": "4gb"
+    },
+    {
+        "name": "idam",
+        "os": "linux",
+        "cpu": "2vcpu",
+        "ram": "4gb"
+    },
+    {
+        "name": "idan\\",
+        "os": "linux",
+        "cpu": "2vcpu",
+        "ram": "4gb"
+    },
+    {
+        "name": "idan",
+        "os": "linux",
+        "cpu": "2vcpu",
+        "ram": "4gb"
     }
 ]
