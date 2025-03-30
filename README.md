@@ -25,7 +25,7 @@ I created this project to:
 
 1. Clone this repo:
 ```bash
-git clone https://github.com/yourusername/infrastructure-simulator
+git clone https://github.com/idan00189/infrastructure-simulator
 cd infrastructure-simulator
 ```
 
