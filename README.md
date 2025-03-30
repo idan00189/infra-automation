@@ -129,7 +129,6 @@ infrastructure-simulator/
 ├── scripts/
 │   └── setup_nginx.sh       # Service installation simulation
 ├── src/
-│   ├── __init__.py
 │   ├── logger.py           # Logging configuration
 │   └── machine.py          # Machine model and validation
 ├── infra_simulator.py      # Main application
